@@ -1,52 +1,60 @@
 let words = ["hello", "door", "popsicle", "carpet", "burger", "pants", "code", "magic", "elephant", "horse", "whale", "laundry", "television", "school", "tennis", "baseball", "gymnastics"]
 let usedLetters = " ";
-let guesses = 7;
+let guesses = 6;
 let correctGuesses = " ";
 let completeWord = " ";
-let fourLW = "_ _ _ _ ";
-let fiveLW = "_____";
-let sixLW = "______";
-let sevenLW = "_______";
-let eightLW = "________";
-let nineLW = "________";
-let tenLW = "________";
+// let fourLW = "____";
+// let fiveLW = "_____";
+// let sixLW = "______";
+// let sevenLW = "_______";
+// let eightLW = "________";
+// let nineLW = "________";
+// let tenLW = "________";
 let head = "||";
 let torso = "||";
 let legs = "||";
+let blankWord = "_";
 
 // Computer picks a word //
 let wordChoice = words[Math.floor(Math.random()*11)]
     // console.log(wordChoice);
+    console.log(wordChoice.length);
 
-    if (wordChoice.length === 4) {
-        blankWord = fourLW;
-    }
-    else if (wordChoice.length === 5) {
-        blankWord = fiveLW;
-    }
-    else if (wordChoice.length === 6) {
-        blankWord = sixLW;
-    }
-    else if (wordChoice.length === 7) {
-        blankWord = sevenLW;
-    }
-    else if (wordChoice.length === 8) {
-        blankWord = eightLW;
-    }
-    else if (wordChoice.length === 9) {
-        blankWord = nineLW;
-    }
-    else {
-        blankWord = tenLW;
-    }
+for (i = 1; i < wordChoice.length; i++) {
+    blankWord = blankWord + "_";
+}
+console.log(blankWord);
+
+    // if (wordChoice.length === 4) {
+    //     blankWord = fourLW;
+    // }
+    // else if (wordChoice.length === 5) {
+    //     blankWord = fiveLW;
+    // }
+    // else if (wordChoice.length === 6) {
+    //     blankWord = sixLW;
+    // }
+    // else if (wordChoice.length === 7) {
+    //     blankWord = sevenLW;
+    // }
+    // else if (wordChoice.length === 8) {
+    //     blankWord = eightLW;
+    // }
+    // else if (wordChoice.length === 9) {
+    //     blankWord = nineLW;
+    // }
+    // else {
+    //     blankWord = tenLW;
+    // }
     
 let letterUpdate = blankWord;
 
 // User starts guessing letters
-// document.onkeyup = function() {
-    // function myFunction() {
-    
-        document.onkeyup = function() {
+
+// This was my trying to get a button to start the game //
+// function myFunction() {
+
+document.onkeyup = function (e) { 
 
     // As user guesses, check to see if any letters match. ßFill in correct letters or list used letters
     let letterGuess = String.fromCharCode(event.keyCode).toLowerCase();
@@ -71,7 +79,10 @@ let letterUpdate = blankWord;
              blankWord = letterUpdate;
         }
         // console.log(blankWord);
-        // correctGuesses += letterGuess;
+        correctGuesses += letterGuess;
+    }
+    else if (e.keyCode === 32) {
+        alert("Play");
     }
     //  if letter has been guessed //
     else if (inUsedLetters || inCorrectGuesses) {
@@ -111,24 +122,22 @@ let letterUpdate = blankWord;
 
 // display html //
 
-    console.log(blankWord);
+    // console.log(blankWord);
     let html = "<p>This word contains " + wordChoice.length + " letters" +
     "<p>" + blankWord +
-    "<p> Used letters: " + usedLetters +
-    "<p> Guesses remaining: " + guesses +
+    // "<p> Guesses remaining: " + guesses +
     "<p>-----" +
     "<br>" + head +
     "<br>" + torso +
     "<br>" + legs +
-    "<br>--";
+    "<br>--" +
+    "<p> Used letters: " + usedLetters;
 
     document.querySelector('#game').innerHTML = html;
 
     if (blankWord === wordChoice) {
         alert("You won!")
     }
-
-
+    
 }
-
 
