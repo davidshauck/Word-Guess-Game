@@ -1,21 +1,24 @@
 let words = ["hello", "door", "popsicle", "carpet", "burger", "pants", "code", "magic", "elephant", "horse", "whale", "laundry", "television", "school", "tennis", "baseball", "gymnastics"]
 let usedLetters = " ";
+let guesses = 7;
 let correctGuesses = " ";
-let guesses = 6;
 let completeWord = " ";
-let fourLW = "____";
+let fourLW = "_ _ _ _ ";
 let fiveLW = "_____";
 let sixLW = "______";
 let sevenLW = "_______";
 let eightLW = "________";
 let nineLW = "________";
 let tenLW = "________";
+let head = "||";
+let torso = "||";
+let legs = "||";
 
 // Computer picks a word //
-let wordChoice = words[Math.floor(Math.random()*words.length)]
-    console.log(wordChoice);
-let blankWord = "__________";
-    if (wordChoice.length == 4) {
+let wordChoice = words[Math.floor(Math.random()*11)]
+    // console.log(wordChoice);
+
+    if (wordChoice.length === 4) {
         blankWord = fourLW;
     }
     else if (wordChoice.length === 5) {
@@ -30,29 +33,28 @@ let blankWord = "__________";
     else if (wordChoice.length === 8) {
         blankWord = eightLW;
     }
-    else if (wordChoice.length === 8) {
+    else if (wordChoice.length === 9) {
         blankWord = nineLW;
     }
     else {
-        blankWord = tentLW;
+        blankWord = tenLW;
     }
     
 let letterUpdate = blankWord;
 
-    // console.log(blankWord);
-// Press any key to begin
-
 // User starts guessing letters
-document.onkeyup = function() {
-  
+// document.onkeyup = function() {
+    // function myFunction() {
+    
+        document.onkeyup = function() {
+
     // As user guesses, check to see if any letters match. ßFill in correct letters or list used letters
     let letterGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
     // determines what position the guessed letter is in //
     let letterPosition = wordChoice.indexOf(letterGuess);
-        // console.log("Letter position:", letterPosition);
+    // determines if the letter is used a 2nd time
     let letterPosition2 = wordChoice.indexOf(letterGuess, letterPosition + 1);
-        // console.log ("Does it appear more than once:", letterPosition2);
 
     // variables to test whether the letter guessed is in the word or has been used //
     let inWord = wordChoice.includes(letterGuess);
@@ -68,8 +70,8 @@ document.onkeyup = function() {
              letterUpdate = blankWord.substr(0, letterPosition2) + letterGuess + letterUpdate.substr(letterPosition2 + 1);
              blankWord = letterUpdate;
         }
-        console.log(blankWord);
-        correctGuesses += letterGuess;
+        // console.log(blankWord);
+        // correctGuesses += letterGuess;
     }
     //  if letter has been guessed //
     else if (inUsedLetters || inCorrectGuesses) {
@@ -81,26 +83,44 @@ document.onkeyup = function() {
         // reduce guesses by 1 //
         guesses -= 1;
         // if no more guesses remaining //
+        // debugger;
+        if (guesses === 5) {
+            head = head + "&nbsp;&nbsp;&nbsp;&nbsp;O";
+        }
+        if (guesses === 4) {
+            torso = torso + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|";
+        }
+        if (guesses === 3) {
+            torso = "||&nbsp;&nbsp;&nbsp;&nbsp;-|";
+        }
+        if (guesses === 2) {
+            torso = "||&nbsp;&nbsp;&nbsp;&nbsp;-|-";
+        }
+        if (guesses === 1) {
+            legs = legs + "&nbsp;&nbsp;&nbsp;&nbsp;/";
+        }
         if (guesses === 0) {
+            legs = "||&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;\\";
             alert("Game over");
             let lose = "<p>The word was " + wordChoice;
             document.querySelector("#lose").innerHTML = lose;
         }
     }
 
-            
-// Tell them they win when they fill in word correctly
-
+    
 
 // display html //
 
     console.log(blankWord);
-    let html = "<p>Press any key to begin." +
-    "<p>This word contains " + wordChoice.length + " letters" +
+    let html = "<p>This word contains " + wordChoice.length + " letters" +
     "<p>" + blankWord +
-    // "<p> Correct guesses:" + correctGuesses +
     "<p> Used letters: " + usedLetters +
-    "<p> Guesses remaining: " + guesses;
+    "<p> Guesses remaining: " + guesses +
+    "<p>-----" +
+    "<br>" + head +
+    "<br>" + torso +
+    "<br>" + legs +
+    "<br>--";
 
     document.querySelector('#game').innerHTML = html;
 
