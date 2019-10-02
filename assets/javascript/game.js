@@ -1,4 +1,4 @@
-let words = ["hello", "door", "popsicle", "carpet", "burger", "pants", "code", "magic", "elephant", "horse", "whale", "laundry", "television", "school", "tennis", "baseball", "gymnastics"]
+let words = ["hello", "door", "popsicle", "carpet", "burger", "pants", "code", "magic", "elephant", "horse", "whale", "laundry", "television", "school", "breakfast", "table", "cups", "tennis", "baseball", "gymnastics"]
 let usedLetters = " ";
 let guesses = 6;
 let correctGuesses = " ";
@@ -10,7 +10,7 @@ let blankWord = "_";
 
 
 // Computer picks a word //
-let wordChoice = words[Math.floor(Math.random()*11)]
+let wordChoice = words[Math.floor(Math.random()*words.length)]
 
 // generates blank word field //
 for (i = 1; i < wordChoice.length; i++) {

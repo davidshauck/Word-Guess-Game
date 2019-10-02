@@ -19,6 +19,7 @@
     font-size: 72px;
     letter-spacing: 8px;
     text-align: center;
+    text-transform: uppercase;
 }
 
 #blankWord {
@@ -45,4 +46,5 @@ img {
  #used {
      font-size: 30px;
      text-align: center;
+     text-transform: uppercase;
  }
