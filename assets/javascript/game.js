@@ -3,10 +3,7 @@ let usedLetters = " ";
 let guesses = 6;
 let correctGuesses = " ";
 let completeWord = " ";
-let head = "||";
-let torso = "||";
-let legs = "||";
-let blankWord = "_";
+let blankWord = " ";
 
 // Computer picks a word //
 let wordChoice = words[Math.floor(Math.random()*words.length)]
@@ -63,20 +60,20 @@ document.onkeyup = function (e) {
         }
         correctGuesses += letterGuess;
     }
-    // remove space bar as one of the choices, allows space bar to begin game without wasting a turn //
-    else if (e.keyCode === 32) {
-        alert("Press OK");
+    // elimates non-letters from selection //
+    else if (e.keyCode < 65 || e.keyCode > 90) {
+        alert("That's not a valid selection");
     }
     //  if letter has been guessed //
     else if (inUsedLetters || inCorrectGuesses) {
         alert("You've already used that letter");
     }
-    // if letter is not in word or hasn't been guessed //
+    // if letter is not in word and hasn't been guessed //
     else {
         usedLetters += letterGuess;
         // reduce guesses by 1 //
         guesses -= 1;
-        // html for what happens to hangman graphic upon each guess remaining //
+        // update image based on how many guesses remain //
         if (guesses === 5) {
             document.getElementById("myImg").src = "assets/images/head.gif";
         }
