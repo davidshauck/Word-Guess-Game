@@ -24,6 +24,7 @@ let letterUpdate = blankWord;
 // document.getElementById("game").addEventListener("click", myFunction);
 
 function myFunction() {
+    document.getElementById("myImg").src = "assets/images/scaffold.gif";
     // let html = "<p>This word contains " + wordChoice.length + " letters" +
     let html = "<p>" + blankWord;
     document.getElementById("display").innerHTML = html;
