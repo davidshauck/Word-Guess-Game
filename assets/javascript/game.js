@@ -3,57 +3,39 @@ let usedLetters = " ";
 let guesses = 6;
 let correctGuesses = " ";
 let completeWord = " ";
-// let fourLW = "____";
-// let fiveLW = "_____";
-// let sixLW = "______";
-// let sevenLW = "_______";
-// let eightLW = "________";
-// let nineLW = "________";
-// let tenLW = "________";
 let head = "||";
 let torso = "||";
 let legs = "||";
 let blankWord = "_";
 
+
 // Computer picks a word //
 let wordChoice = words[Math.floor(Math.random()*11)]
-    // console.log(wordChoice);
-    console.log(wordChoice.length);
 
+// generates blank word field //
 for (i = 1; i < wordChoice.length; i++) {
     blankWord = blankWord + "_";
 }
-console.log(blankWord);
-
-    // if (wordChoice.length === 4) {
-    //     blankWord = fourLW;
-    // }
-    // else if (wordChoice.length === 5) {
-    //     blankWord = fiveLW;
-    // }
-    // else if (wordChoice.length === 6) {
-    //     blankWord = sixLW;
-    // }
-    // else if (wordChoice.length === 7) {
-    //     blankWord = sevenLW;
-    // }
-    // else if (wordChoice.length === 8) {
-    //     blankWord = eightLW;
-    // }
-    // else if (wordChoice.length === 9) {
-    //     blankWord = nineLW;
-    // }
-    // else {
-    //     blankWord = tenLW;
-    // }
-    
 let letterUpdate = blankWord;
 
-// User starts guessing letters
 
-// This was my trying to get a button to start the game //
-// function myFunction() {
 
+// start of game //
+// document.getElementById("game").addEventListener("click", myFunction);
+
+function myFunction() {
+    let html = "<p>This word contains " + wordChoice.length + " letters" +
+    "<p>" + blankWord +
+    "<p>-----" +
+    "<br>" + head +
+    "<br>" + torso +
+    "<br>" + legs +
+    "<br>--" +
+    "<p> Used letters: " + usedLetters;
+    document.getElementById("display").innerHTML = html;
+}
+
+// User begins to play //
 document.onkeyup = function (e) { 
 
     // As user guesses, check to see if any letters match. ßFill in correct letters or list used letters
@@ -78,11 +60,11 @@ document.onkeyup = function (e) {
              letterUpdate = blankWord.substr(0, letterPosition2) + letterGuess + letterUpdate.substr(letterPosition2 + 1);
              blankWord = letterUpdate;
         }
-        // console.log(blankWord);
         correctGuesses += letterGuess;
     }
+    // remove space bar as one of the choices, allows space bar to begin game without wasting a turn //
     else if (e.keyCode === 32) {
-        alert("Play");
+        alert("Press OK");
     }
     //  if letter has been guessed //
     else if (inUsedLetters || inCorrectGuesses) {
@@ -93,8 +75,7 @@ document.onkeyup = function (e) {
         usedLetters += letterGuess;
         // reduce guesses by 1 //
         guesses -= 1;
-        // if no more guesses remaining //
-        // debugger;
+        // html for what happens to hangman graphic upon each guess remaining //
         if (guesses === 5) {
             head = head + "&nbsp;&nbsp;&nbsp;&nbsp;O";
         }
@@ -110,34 +91,43 @@ document.onkeyup = function (e) {
         if (guesses === 1) {
             legs = legs + "&nbsp;&nbsp;&nbsp;&nbsp;/";
         }
-        if (guesses === 0) {
-            legs = "||&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;\\";
-            alert("Game over");
-            let lose = "<p>The word was " + wordChoice;
-            document.querySelector("#lose").innerHTML = lose;
-        }
+        // if (guesses === 0) {
+        //     legs = "||&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;\\";
+        //     alert("Game over");
+        //     let lose = "<p>The word was " + wordChoice;
+        //     document.querySelector("#lose").innerHTML = lose;
+        // }
     }
-
-    
 
 // display html //
 
-    // console.log(blankWord);
     let html = "<p>This word contains " + wordChoice.length + " letters" +
     "<p>" + blankWord +
-    // "<p> Guesses remaining: " + guesses +
     "<p>-----" +
     "<br>" + head +
     "<br>" + torso +
     "<br>" + legs +
     "<br>--" +
     "<p> Used letters: " + usedLetters;
+    document.getElementById("display").innerHTML = html;
 
-    document.querySelector('#game').innerHTML = html;
+    if (guesses === 0) {
+        legs = "||&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;\\";
+        myFunction();
+        // alert("Game over");
+        let htmllose = "<p>The word was " + wordChoice;
+        document.getElementById("lose").innerHTML = htmllose;
+    }
+
 
     if (blankWord === wordChoice) {
-        alert("You won!")
+        let htmlwin = "You won!";
+        myFunction();
+        document.getElementById("win").innerHTML = htmlwin;
+        // alert("You won!")
+        // location.reload();
+        //add play againhere
     }
-    
+
 }
 
