@@ -48,3 +48,9 @@ img {
      text-align: center;
      text-transform: uppercase;
  }
+
+ #again {
+    font-size: 30px;
+    text-align: center;
+    text-transform: lowercase;
+}
