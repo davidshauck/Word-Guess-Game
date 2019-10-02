@@ -24,15 +24,16 @@ let letterUpdate = blankWord;
 // document.getElementById("game").addEventListener("click", myFunction);
 
 function myFunction() {
-    let html = "<p>This word contains " + wordChoice.length + " letters" +
-    "<p>" + blankWord +
-    "<p>-----" +
-    "<br>" + head +
-    "<br>" + torso +
-    "<br>" + legs +
-    "<br>--" +
-    "<p> Used letters: " + usedLetters;
+    // let html = "<p>This word contains " + wordChoice.length + " letters" +
+    let html = "<p>" + blankWord;
     document.getElementById("display").innerHTML = html;
+    // "<p>-----" +
+    // "<br>" + head +
+    // "<br>" + torso +
+    // "<br>" + legs +
+    // "<br>--" +
+    let html2 = "<p> Used letters: " + usedLetters;
+    document.getElementById("used").innerHTML = html2;
 }
 
 // User begins to play //
@@ -78,18 +79,23 @@ document.onkeyup = function (e) {
         // html for what happens to hangman graphic upon each guess remaining //
         if (guesses === 5) {
             head = head + "&nbsp;&nbsp;&nbsp;&nbsp;O";
+            document.getElementById("myImg").src = "assets/images/head.gif";
         }
         if (guesses === 4) {
             torso = torso + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|";
+            document.getElementById("myImg").src = "assets/images/torso.gif";
         }
         if (guesses === 3) {
             torso = "||&nbsp;&nbsp;&nbsp;&nbsp;-|";
+            document.getElementById("myImg").src = "assets/images/one-arm.gif";
         }
         if (guesses === 2) {
             torso = "||&nbsp;&nbsp;&nbsp;&nbsp;-|-";
+            document.getElementById("myImg").src = "assets/images/two-arms.gif";
         }
         if (guesses === 1) {
             legs = legs + "&nbsp;&nbsp;&nbsp;&nbsp;/";
+            document.getElementById("myImg").src = "assets/images/one-leg.gif";
         }
         // if (guesses === 0) {
         //     legs = "||&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;\\";
@@ -101,18 +107,20 @@ document.onkeyup = function (e) {
 
 // display html //
 
-    let html = "<p>This word contains " + wordChoice.length + " letters" +
-    "<p>" + blankWord +
-    "<p>-----" +
-    "<br>" + head +
-    "<br>" + torso +
-    "<br>" + legs +
-    "<br>--" +
-    "<p> Used letters: " + usedLetters;
+    // let html = "<p>This word contains " + wordChoice.length + " letters" +
+    let html = "<p>" + blankWord;
     document.getElementById("display").innerHTML = html;
+    // "<p>-----" +
+    // "<br>" + head +
+    // "<br>" + torso +
+    // "<br>" + legs +
+    // "<br>--" +
+    let html2 = "<p> Used letters: " + usedLetters;
+    document.getElementById("used").innerHTML = html2;
 
     if (guesses === 0) {
         legs = "||&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;\\";
+        document.getElementById("myImg").src = "assets/images/full-body.gif";
         myFunction();
         // alert("Game over");
         let htmllose = "<p>The word was " + wordChoice;
@@ -121,7 +129,7 @@ document.onkeyup = function (e) {
 
 
     if (blankWord === wordChoice) {
-        let htmlwin = "You won!";
+        let htmlwin = "Congratulations!";
         myFunction();
         document.getElementById("win").innerHTML = htmlwin;
         // alert("You won!")
@@ -130,4 +138,3 @@ document.onkeyup = function (e) {
     }
 
 }
-

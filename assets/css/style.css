@@ -1,15 +1,48 @@
 #game {
     font-size: 24px;
+    text-align: center;
 }
 
 #lose {
-    font-size: 24px;
+    font-size: 48px;
+    text-align: center;
+    color: red;
 }
 
 #win {
-    font-size: 24px;
+    font-size: 48px;
+    text-align: center;
+    color: green;
 }
 
 #display {
-    font-size: 24px;
+    font-size: 72px;
+    letter-spacing: 8px;
+    text-align: center;
 }
+
+#blankWord {
+    font-size: 24px;
+    letter-spacing: 5px;
+}
+
+#title {
+    font-size: 72px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+
+img {
+    float: left;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+ #used {
+     font-size: 30px;
+     text-align: center;
+ }
