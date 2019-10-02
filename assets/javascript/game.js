@@ -3,7 +3,7 @@ let usedLetters = " ";
 let guesses = 6;
 let correctGuesses = " ";
 let completeWord = " ";
-let blankWord = " ";
+let blankWord = "";
 
 // Computer picks a word //
 let wordChoice = words[Math.floor(Math.random()*words.length)]
