@@ -1,15 +1,15 @@
 let words = ["hello", "door", "popsicle", "carpet", "burger", "pants", "code", "magic", "elephant", "horse", "whale", "laundry", "television", "school", "breakfast", "table", "cups", "tennis", "baseball", "gymnastics"]
-let usedLetters = " ";
+let usedLetters = "";
 let guesses = 6;
-let correctGuesses = " ";
-let completeWord = " ";
+let correctGuesses = "";
+let completeWord = "";
 let blankWord = "";
 
 // Computer picks a word //
 let wordChoice = words[Math.floor(Math.random()*words.length)]
 
 // generates blank word field //
-for (i = 1; i < wordChoice.length; i++) {
+for (i = 0; i < wordChoice.length; i++) {
     blankWord = blankWord + "_";
 }
 // sets letterUpdate to be empty at start
