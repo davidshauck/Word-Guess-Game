@@ -17,7 +17,6 @@ let letterUpdate = blankWord;
 
 // start of game //
 function myFunction() {
-    console.log(guesses);
     if (guesses === 6) {
     document.getElementById("myImg").src = "assets/images/scaffold.gif";
     let html = "<p>" + blankWord;
@@ -34,6 +33,7 @@ function myFunction() {
 }
 
 // User begins to play //
+
 document.onkeyup = function (e) { 
 
     // As user guesses, check to see if any letters match. ßFill in correct letters or list used letters
