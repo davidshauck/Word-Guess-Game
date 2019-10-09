@@ -29,12 +29,17 @@
 
 #title {
     font-size: 72px;
+    line-height: 60px;
+    padding-top: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align: center;
 }
 
 img {
     float: left;
+    width: 500px;
+    height: 500px;
+    padding: 0px;
 }
 
 .center-block {
@@ -48,6 +53,13 @@ img {
      text-align: center;
      text-transform: uppercase;
  }
+
+ #new-game {
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 20px 20px 0px 20px;
+}
 
  #again {
     font-size: 30px;
@@ -64,4 +76,33 @@ img {
 #body {
     font-size: 18px;
     text-align: center;
+    padding-bottom: 20px;
 }
+
+@media screen and (max-width: 748px) {
+  
+    img {
+      max-width: 400px;
+      max-height: 400px;
+      /* padding-top: 20px;
+      margin-bottom: 20px; */
+    }
+
+    #display {
+        font-size: 48px;
+        letter-spacing: 4px;
+    }
+
+    #used {
+        font-size: 18px;
+    }
+
+    #lose {
+        font-size: 24px;
+    }
+    
+    #win {
+        font-size: 24px;
+    }
+  
+  }

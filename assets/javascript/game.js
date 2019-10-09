@@ -4,36 +4,43 @@ let guesses = 6;
 let correctGuesses = "";
 let completeWord = "";
 let blankWord = "";
-
-// Computer picks a word //
+let html = "";
+let html2 = "";
+let letterUpdate = "";
 let wordChoice = words[Math.floor(Math.random()*words.length)]
 
+function myFunction() {
+// Computer picks a word //
+wordChoice = words[Math.floor(Math.random()*words.length)]
+
+// reset blankWord & completeWord on re-play
+blankword = "";
+completeWord = "";
+
 // generates blank word field //
-for (i = 0; i < wordChoice.length; i++) {
+for (let i = 0; i < wordChoice.length; i++) {
     blankWord = blankWord + "_";
 }
 // sets letterUpdate to be empty at start
-let letterUpdate = blankWord;
+letterUpdate = blankWord;
 
-// start of game //
-function myFunction() {
+// set blank display and empty scaffold before first guess
     if (guesses === 6) {
     document.getElementById("myImg").src = "assets/images/scaffold.gif";
-    let html = "<p>" + blankWord;
+    html = "<p>" + blankWord;
     document.getElementById("display").innerHTML = html;
-    let html2 = "<p> Used letters: " + usedLetters;
+    html2 = "<p> Used letters: " + usedLetters;
     document.getElementById("used").innerHTML = html2;
     }
     else {
-    let html = "<p>" + blankWord;
+    html = "<p>" + blankWord;
     document.getElementById("display").innerHTML = html;
-    let html2 = "<p> Used letters: " + usedLetters;
+    html2 = "<p> Used letters: " + usedLetters;
     document.getElementById("used").innerHTML = html2;
     }
 }
 
 // User begins to play //
-
 document.onkeyup = function (e) { 
 
     // As user guesses, check to see if any letters match. ßFill in correct letters or list used letters
@@ -92,7 +99,6 @@ document.onkeyup = function (e) {
     }
 
 // display html //
-
     let html = "<p>" + blankWord;
     document.getElementById("display").innerHTML = html;
     let html2 = "<p> Used letters: " + usedLetters;
@@ -100,19 +106,32 @@ document.onkeyup = function (e) {
 
     if (guesses === 0) {
         document.getElementById("myImg").src = "assets/images/full-body.gif";
-        myFunction();
         let htmllose = "<p>The word was " + wordChoice;
         let again = "(Refresh page to play again)";
         document.getElementById("lose").innerHTML = htmllose;
-        document.getElementById("again").innerHTML = again;
     }
 
     if (blankWord === wordChoice) {
         let htmlwin = "Congratulations!";
         let again = "(Refresh page to play again)";
-        myFunction();
         document.getElementById("win").innerHTML = htmlwin;
-        document.getElementById("again").innerHTML = again;
     }
+
+    // clear variables & fields on re-play
+    $(".operator").click(function(){
+        guesses = 6;
+        usedLetters = "";
+        correctGuesses = "";
+        completeWord = "";
+        blankWord = "";
+        wordChoice = "";
+        html = "";
+        html2 = "";
+        letterUpdate = "";
+        
+        $("#used, #win, #lose, #result, #again").empty();
+    
+        myFunction();
+    });
 
 }
